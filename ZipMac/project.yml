@@ -1,0 +1,36 @@
+name: ZipMac
+options:
+  bundleIdPrefix: com.zipmac
+  deploymentTarget:
+    macOS: "13.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MACOSX_DEPLOYMENT_TARGET: "13.0"
+targets:
+  ZipMac:
+    type: application
+    platform: macOS
+    sources:
+      - path: ZipMac
+        excludes:
+          - Resources/7zz
+    resources:
+      - path: ZipMac/Resources/7zz
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zipmac.app
+        INFOPLIST_FILE: ZipMac/Info.plist
+        CODE_SIGN_IDENTITY: "-"
+    entitlements:
+      path: ZipMac/ZipMac.entitlements
+  ZipMacTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - ZipMacTests
+    dependencies:
+      - target: ZipMac
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zipmac.tests
