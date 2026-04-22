@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		73E503D3C147662A63B11DE2 /* CompressionFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461EC4F6589875394AB1FE5 /* CompressionFormat.swift */; };
+		C25C0234582D3AABB05322C3 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12F734A85591D04723254BC /* AppError.swift */; };
+		DABA051383A6DF7C958FD2D7 /* ArchiveEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC621D05E0D1F66B682F3685 /* ArchiveEntry.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		F14B3B40A62019FFDDA9764E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -19,8 +25,11 @@
 /* Begin PBXFileReference section */
 		206AAFFB38D502279DB156E2 /* ZipMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZipMac.entitlements; sourceTree = "<group>"; };
 		42443A1989BF3E02C1223085 /* ZipMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZipMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6461EC4F6589875394AB1FE5 /* CompressionFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionFormat.swift; sourceTree = "<group>"; };
+		BC621D05E0D1F66B682F3685 /* ArchiveEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveEntry.swift; sourceTree = "<group>"; };
 		C82EB96C0C8C17DA6C1C0F5A /* ZipMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZipMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8D8838686BE3F57148F4721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F12F734A85591D04723254BC /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -29,6 +38,16 @@
 			children = (
 			);
 			path = ZipMacTests;
+			sourceTree = "<group>";
+		};
+		77ECCD17C7EEE6FA562AD349 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F12F734A85591D04723254BC /* AppError.swift */,
+				BC621D05E0D1F66B682F3685 /* ArchiveEntry.swift */,
+				6461EC4F6589875394AB1FE5 /* CompressionFormat.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A15E6ACD5DF022CC946CBC37 /* Products */ = {
@@ -54,11 +73,12 @@
 			children = (
 				E8D8838686BE3F57148F4721 /* Info.plist */,
 				206AAFFB38D502279DB156E2 /* ZipMac.entitlements */,
+				77ECCD17C7EEE6FA562AD349 /* Models */,
 			);
 			path = ZipMac;
 			sourceTree = "<group>";
 		};
-		"TEMP_64D31BFF-61C3-4C66-B51D-F6F77DB444C9" /* Views */ = {
+		"TEMP_08501203-04EC-4C7F-89B3-0EABE1340A5C" /* Views */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -146,6 +166,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C25C0234582D3AABB05322C3 /* AppError.swift in Sources */,
+				DABA051383A6DF7C958FD2D7 /* ArchiveEntry.swift in Sources */,
+				73E503D3C147662A63B11DE2 /* CompressionFormat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
