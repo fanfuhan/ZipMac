@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 protocol SevenZipServiceProtocol: AnyObject {
     var progress: Double { get }
     var status: OperationStatus { get }

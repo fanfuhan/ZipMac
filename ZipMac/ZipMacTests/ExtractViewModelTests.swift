@@ -1,6 +1,7 @@
 import XCTest
 @testable import ZipMac
 
+@MainActor
 final class ExtractViewModelTests: XCTestCase {
 
     func testInitialState() {

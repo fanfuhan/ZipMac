@@ -1,6 +1,7 @@
 import XCTest
 @testable import ZipMac
 
+@MainActor
 final class SevenZipServiceTests: XCTestCase {
 
     var service: SevenZipService!
@@ -28,14 +29,15 @@ final class SevenZipServiceTests: XCTestCase {
 
         let inputFile = tempDir.appendingPathComponent("hello.txt")
         try "Hello World".write(to: inputFile, atomically: true, encoding: .utf8)
-        let outputArchive = tempDir.appendingPathComponent("output.7z")
+        // compress generates archive name from input: "hello.txt" -> "hello.7z"
+        let expectedArchive = tempDir.appendingPathComponent("hello.7z")
 
         try await service.compress(
             files: [inputFile], format: .sevenZ, level: 5,
             volumeSize: nil, password: nil, outputDir: tempDir
         )
 
-        XCTAssertTrue(FileManager.default.fileExists(atPath: outputArchive.path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: expectedArchive.path))
     }
 
     func testExtract_7zArchive() async throws {
@@ -46,12 +48,13 @@ final class SevenZipServiceTests: XCTestCase {
         let inputFile = tempDir.appendingPathComponent("hello.txt")
         try "Hello World".write(to: inputFile, atomically: true, encoding: .utf8)
 
-        let archive = tempDir.appendingPathComponent("test.7z")
         try await service.compress(
             files: [inputFile], format: .sevenZ, level: 5,
             volumeSize: nil, password: nil, outputDir: tempDir
         )
 
+        // compress generates "hello.7z" from "hello.txt"
+        let archive = tempDir.appendingPathComponent("hello.7z")
         let extractDir = tempDir.appendingPathComponent("extracted")
         try FileManager.default.createDirectory(at: extractDir, withIntermediateDirectories: true)
 
@@ -71,12 +74,12 @@ final class SevenZipServiceTests: XCTestCase {
         let inputFile = tempDir.appendingPathComponent("list_test.txt")
         try "test content".write(to: inputFile, atomically: true, encoding: .utf8)
 
-        let archive = tempDir.appendingPathComponent("list_test.7z")
         try await service.compress(
             files: [inputFile], format: .sevenZ, level: 5,
             volumeSize: nil, password: nil, outputDir: tempDir
         )
 
+        let archive = tempDir.appendingPathComponent("list_test.7z")
         let entries = try await service.listContents(archive: archive)
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries[0].name, "list_test.txt")
@@ -101,7 +104,8 @@ final class SevenZipServiceTests: XCTestCase {
             volumeSize: "100k", password: nil, outputDir: tempDir
         )
 
-        let vol1 = tempDir.appendingPathComponent("bigfile.bin.7z.001")
+        // compress generates "bigfile.7z" from "bigfile.bin", volumes are "bigfile.7z.001"
+        let vol1 = tempDir.appendingPathComponent("bigfile.7z.001")
         XCTAssertTrue(FileManager.default.fileExists(atPath: vol1.path), "Volume file .001 should exist")
     }
 }

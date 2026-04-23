@@ -4,10 +4,12 @@ struct MainWindowView: View {
     @StateObject private var service = SevenZipService(binaryPath: resolveBinaryPath())
     @State private var selectedTab: Tab = .compress
 
-    enum Tab: String, CaseIterable {
+    enum Tab: String, CaseIterable, Identifiable {
         case compress = "压缩"
         case extract = "解压"
         case settings = "设置"
+
+        var id: String { rawValue }
     }
 
     var body: some View {
