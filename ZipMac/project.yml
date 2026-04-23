@@ -14,9 +14,9 @@ targets:
     sources:
       - path: ZipMac
         excludes:
-          - Resources/7zz
-    resources:
+          - Resources/**
       - path: ZipMac/Resources/7zz
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.zipmac.app
@@ -34,3 +34,4 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.zipmac.tests
+        GENERATE_INFOPLIST_FILE: YES

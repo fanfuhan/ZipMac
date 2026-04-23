@@ -5,6 +5,17 @@ import XCTest
 final class CompressViewModelTests: XCTestCase {
 
     func testInitialState() {
+        // Reset defaults so test isn't affected by prior settings changes
+        let defaults = UserDefaults.standard
+        let savedFormat = defaults.string(forKey: "defaultFormat")
+        let savedLevel = defaults.integer(forKey: "defaultLevel")
+        defaults.removeObject(forKey: "defaultFormat")
+        defaults.removeObject(forKey: "defaultLevel")
+        defer {
+            defaults.set(savedFormat, forKey: "defaultFormat")
+            if savedLevel > 0 { defaults.set(savedLevel, forKey: "defaultLevel") }
+        }
+
         let viewModel = CompressViewModel()
         XCTAssertTrue(viewModel.selectedFiles.isEmpty)
         XCTAssertEqual(viewModel.format, .sevenZ)

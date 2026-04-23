@@ -4,6 +4,7 @@ struct DropZoneView: View {
     let title: String
     let subtitle: String
     let onDrop: ([URL]) -> Void
+    var onTap: (() -> Void)? = nil
 
     @State private var isTargeted = false
 
@@ -29,6 +30,10 @@ struct DropZoneView: View {
                         .fill(isTargeted ? Color.accentColor.opacity(0.05) : Color.clear)
                 )
         )
+        .contentShape(RoundedRectangle(cornerRadius: 16))
+        .onTapGesture {
+            onTap?()
+        }
         .onDrop(of: [.fileURL], isTargeted: $isTargeted) { providers in
             handleDrop(providers)
             return true

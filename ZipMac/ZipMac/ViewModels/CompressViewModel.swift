@@ -9,6 +9,37 @@ class CompressViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var isAdvancedMode: Bool = false
 
+    private var defaultsObserver: (any NSObjectProtocol)?
+
+    init() {
+        loadDefaults()
+        observeDefaults()
+    }
+
+    nonisolated deinit {
+        // Observer cleanup happens via NotificationCenter's weak reference;
+        // no manual removal needed from nonisolated context.
+    }
+
+    private func loadDefaults() {
+        let storedFormat = UserDefaults.standard.string(forKey: "defaultFormat") ?? "7z"
+        format = CompressionFormat(rawValue: storedFormat) ?? .sevenZ
+        let storedLevel = UserDefaults.standard.integer(forKey: "defaultLevel")
+        level = storedLevel > 0 ? storedLevel : 5
+    }
+
+    private func observeDefaults() {
+        defaultsObserver = NotificationCenter.default.addObserver(
+            forName: UserDefaults.didChangeNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                self?.loadDefaults()
+            }
+        }
+    }
+
     func addFile(_ url: URL) {
         if !selectedFiles.contains(url) {
             selectedFiles.append(url)

@@ -7,6 +7,7 @@ enum CompressionFormat: String, CaseIterable, Identifiable {
     case bzip2 = "bzip2"
     case tar = "tar"
     case xz = "xz"
+    case tarGz = "tar.gz"
     case wim = "wim"
 
     var id: String { rawValue }
@@ -19,6 +20,7 @@ enum CompressionFormat: String, CaseIterable, Identifiable {
         case .gzip: return "gz"
         case .bzip2: return "bz2"
         case .tar: return "tar"
+        case .tarGz: return "tar.gz"
         case .xz: return "xz"
         case .wim: return "wim"
         }
@@ -43,8 +45,25 @@ enum CompressionFormat: String, CaseIterable, Identifiable {
         case .gzip: return "GZIP"
         case .bzip2: return "BZIP2"
         case .tar: return "TAR"
+        case .tarGz: return "TAR.GZ"
         case .xz: return "XZ"
         case .wim: return "WIM"
+        }
+    }
+
+    /// Whether this format requires a two-step process (tar then compress)
+    var isTwoStep: Bool {
+        switch self {
+        case .tarGz: return true
+        default: return false
+        }
+    }
+
+    /// The tar compression step's format for two-step formats
+    var compressStepFormat: CompressionFormat? {
+        switch self {
+        case .tarGz: return .gzip
+        default: return nil
         }
     }
 }

@@ -25,6 +25,7 @@
 		D493C1D29130F212274C2AF0 /* ZipMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2F21B2D55F776FAB0A06B /* ZipMacApp.swift */; };
 		DABA051383A6DF7C958FD2D7 /* ArchiveEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC621D05E0D1F66B682F3685 /* ArchiveEntry.swift */; };
 		DC074B1B7AB1E7F14AEEACB1 /* DropZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545CB66F738064CB4F2F15BF /* DropZoneView.swift */; };
+		F69F9B2E8631D13C56CDFB9A /* 7zz in Resources */ = {isa = PBXBuildFile; fileRef = F1A6D2D147AC43A6D0B784B6 /* 7zz */; };
 		F977B3D41DD5D36B78DFBB14 /* ExtractViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEEF1E43809A346230C4FAD /* ExtractViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,11 +61,21 @@
 		E8D8838686BE3F57148F4721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EA740B6944DCF1822BF852CB /* CompressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressView.swift; sourceTree = "<group>"; };
 		F12F734A85591D04723254BC /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		F1A6D2D147AC43A6D0B784B6 /* 7zz */ = {isa = PBXFileReference; path = 7zz; sourceTree = "<group>"; };
 		F6CA7A2A6E29C8049F73FC88 /* CompressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressViewModel.swift; sourceTree = "<group>"; };
 		F8AFF9BAD07088DAB73B8A00 /* OutputParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputParserTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		05B652D89AB7824E0D306789 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F1A6D2D147AC43A6D0B784B6 /* 7zz */,
+			);
+			name = Resources;
+			path = ZipMac/Resources;
+			sourceTree = "<group>";
+		};
 		0D808D09AC8646FDD8CADD51 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +140,7 @@
 		AAC18353E0250DDF7FFC8C3D = {
 			isa = PBXGroup;
 			children = (
+				05B652D89AB7824E0D306789 /* Resources */,
 				BABC8F0233DF64387058316E /* ZipMac */,
 				69DCF40865D2559D731EE444 /* ZipMacTests */,
 				A15E6ACD5DF022CC946CBC37 /* Products */,
@@ -192,6 +204,7 @@
 			buildConfigurationList = D1C7A0E10CBFAA560EEF8D25 /* Build configuration list for PBXNativeTarget "ZipMac" */;
 			buildPhases = (
 				BF9C128DD8DB5B2EBD583961 /* Sources */,
+				4CB2C43649857B24BB495848 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -234,6 +247,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4CB2C43649857B24BB495848 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F69F9B2E8631D13C56CDFB9A /* 7zz in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		189728EFC38995EA0A8C1AC2 /* Sources */ = {
@@ -382,6 +406,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -454,6 +479,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

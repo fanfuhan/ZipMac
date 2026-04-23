@@ -58,50 +58,36 @@ struct CompressView: View {
                     subtitle: "或点击选择文件",
                     onDrop: { urls in
                         for url in urls { viewModel.addFile(url) }
-                    }
+                    },
+                    onTap: { chooseFiles() }
                 )
-
-                HStack(spacing: 12) {
-                    Button {
-                        compress(with: .sevenZ)
-                    } label: {
-                        Label("压缩为 7z", systemImage: "archivebox.fill")
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-
-                    Button {
-                        compress(with: .zip)
-                    } label: {
-                        Label("压缩为 ZIP", systemImage: "doc.zipper.fill")
-                    }
-                    .buttonStyle(.bordered)
-                    .controlSize(.large)
-                }
             } else {
                 FileListView(files: viewModel.selectedFiles) { index in
                     viewModel.removeFile(at: index)
                 }
+            }
 
-                HStack(spacing: 12) {
-                    Button {
-                        compress(with: .sevenZ)
-                    } label: {
-                        Label("压缩为 7z", systemImage: "archivebox.fill")
+            HStack(spacing: 12) {
+                Picker("", selection: $viewModel.format) {
+                    ForEach(CompressionFormat.allCases) { fmt in
+                        Text(fmt.displayName).tag(fmt)
                     }
-                    .buttonStyle(.borderedProminent)
+                }
+                .frame(width: 120)
 
-                    Button {
-                        compress(with: .zip)
-                    } label: {
-                        Label("压缩为 ZIP", systemImage: "doc.zipper.fill")
-                    }
-                    .buttonStyle(.bordered)
+                Button {
+                    compress(with: viewModel.format)
+                } label: {
+                    Label("压缩", systemImage: "archivebox.fill")
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(viewModel.selectedFiles.isEmpty)
 
+                if !viewModel.selectedFiles.isEmpty {
                     Button {
                         chooseFiles()
                     } label: {
-                        Label("添加更多文件", systemImage: "plus")
+                        Label("添加", systemImage: "plus")
                     }
                     .buttonStyle(.bordered)
 
@@ -129,7 +115,8 @@ struct CompressView: View {
                         subtitle: "或点击选择文件",
                         onDrop: { urls in
                             for url in urls { viewModel.addFile(url) }
-                        }
+                        },
+                        onTap: { chooseFiles() }
                     )
                 } else {
                     FileListView(files: viewModel.selectedFiles) { index in
@@ -167,6 +154,11 @@ struct CompressView: View {
                             .textFieldStyle(.roundedBorder)
                             .frame(width: 120)
                     }
+                    LabeledContent("") {
+                        Text("必须带单位：b/k/m/g")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                    }
 
                     if viewModel.format.supportsEncryption {
                         LabeledContent("密码") {
@@ -185,7 +177,7 @@ struct CompressView: View {
             }
 
             if !viewModel.volumeSize.isEmpty && !viewModel.isValidVolumeSize(viewModel.volumeSize) {
-                Text("分卷大小格式无效，请使用如 100m、1g 的格式")
+                Text("分卷大小格式无效，必须带单位（如 100m、1g）")
                     .font(.caption)
                     .foregroundColor(.red)
             }
@@ -207,7 +199,12 @@ struct CompressView: View {
         viewModel.format = format
         let outputDir = viewModel.selectedFiles.first?.deletingLastPathComponent() ?? .homeDirectory
         Task {
-            try? await viewModel.compress(service: service, outputDir: outputDir)
+            do {
+                try await viewModel.compress(service: service, outputDir: outputDir)
+            } catch {
+                service.errorMessage = error.localizedDescription
+                service.status = .failed
+            }
         }
     }
 
