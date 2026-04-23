@@ -13,7 +13,9 @@
 		63E10E4E85495C68EFBBE746 /* OutputParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFF9BAD07088DAB73B8A00 /* OutputParserTests.swift */; };
 		73E503D3C147662A63B11DE2 /* CompressionFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461EC4F6589875394AB1FE5 /* CompressionFormat.swift */; };
 		C25C0234582D3AABB05322C3 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12F734A85591D04723254BC /* AppError.swift */; };
+		CE15779E2E59FDDBCF3765A7 /* ExtractViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490D30772898C3522D618CC /* ExtractViewModel.swift */; };
 		DABA051383A6DF7C958FD2D7 /* ArchiveEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC621D05E0D1F66B682F3685 /* ArchiveEntry.swift */; };
+		F977B3D41DD5D36B78DFBB14 /* ExtractViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEEF1E43809A346230C4FAD /* ExtractViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,8 +32,10 @@
 		206AAFFB38D502279DB156E2 /* ZipMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZipMac.entitlements; sourceTree = "<group>"; };
 		231773FC249A46951C7FA78A /* OutputParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputParser.swift; sourceTree = "<group>"; };
 		42443A1989BF3E02C1223085 /* ZipMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZipMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FEEF1E43809A346230C4FAD /* ExtractViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractViewModelTests.swift; sourceTree = "<group>"; };
 		6461EC4F6589875394AB1FE5 /* CompressionFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionFormat.swift; sourceTree = "<group>"; };
 		64E95D93DF007E1B3A40C7F2 /* SevenZipService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenZipService.swift; sourceTree = "<group>"; };
+		7490D30772898C3522D618CC /* ExtractViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractViewModel.swift; sourceTree = "<group>"; };
 		BC621D05E0D1F66B682F3685 /* ArchiveEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveEntry.swift; sourceTree = "<group>"; };
 		C20D5F49E31A9E7213D8FEFB /* SevenZipServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenZipServiceTests.swift; sourceTree = "<group>"; };
 		C82EB96C0C8C17DA6C1C0F5A /* ZipMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZipMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +48,7 @@
 		69DCF40865D2559D731EE444 /* ZipMacTests */ = {
 			isa = PBXGroup;
 			children = (
+				4FEEF1E43809A346230C4FAD /* ExtractViewModelTests.swift */,
 				F8AFF9BAD07088DAB73B8A00 /* OutputParserTests.swift */,
 				C20D5F49E31A9E7213D8FEFB /* SevenZipServiceTests.swift */,
 			);
@@ -87,6 +92,14 @@
 			);
 			sourceTree = "<group>";
 		};
+		AFF0E84A67011458BBE86C8B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7490D30772898C3522D618CC /* ExtractViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		BABC8F0233DF64387058316E /* ZipMac */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,11 +107,12 @@
 				206AAFFB38D502279DB156E2 /* ZipMac.entitlements */,
 				77ECCD17C7EEE6FA562AD349 /* Models */,
 				7E57F81656ACED7AA7707161 /* Services */,
+				AFF0E84A67011458BBE86C8B /* ViewModels */,
 			);
 			path = ZipMac;
 			sourceTree = "<group>";
 		};
-		"TEMP_A7F02013-B0B2-4C0C-864B-84CCFFC596E2" /* Views */ = {
+		"TEMP_7FE003C8-AEAC-4BDA-B527-617660322E51" /* Views */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -179,6 +193,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F977B3D41DD5D36B78DFBB14 /* ExtractViewModelTests.swift in Sources */,
 				63E10E4E85495C68EFBBE746 /* OutputParserTests.swift in Sources */,
 				2D363199037900845E66E3B0 /* SevenZipServiceTests.swift in Sources */,
 			);
@@ -191,6 +206,7 @@
 				C25C0234582D3AABB05322C3 /* AppError.swift in Sources */,
 				DABA051383A6DF7C958FD2D7 /* ArchiveEntry.swift in Sources */,
 				73E503D3C147662A63B11DE2 /* CompressionFormat.swift in Sources */,
+				CE15779E2E59FDDBCF3765A7 /* ExtractViewModel.swift in Sources */,
 				3925882513BD79DDFA86E382 /* OutputParser.swift in Sources */,
 				3C0EABD39DA232C352674B4B /* SevenZipService.swift in Sources */,
 			);
